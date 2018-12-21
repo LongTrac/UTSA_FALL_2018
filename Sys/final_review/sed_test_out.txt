@@ -1,0 +1,2 @@
+printf(" hello world"); // test printing
+System.out.println("test code")

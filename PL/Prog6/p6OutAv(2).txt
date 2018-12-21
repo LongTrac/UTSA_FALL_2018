@@ -1,0 +1,60 @@
+BEEP source code in p6InputA.txt:
+  1. # p6InputA.txt
+  2. # © 2018 Larry W. Clark, this document may not be copied to any other website.
+  3. VAR int count 0
+  4. VAR string result
+  5. VAR string symbol "ho"
+  6. VAR int tick 3
+  7. VAR int limit 10
+  8. VAR string greeting "hello..there"
+  9. VAR int iter 4
+ 10. PRINT "begins..."
+ 11. PRINT "Top:...count=" count "tick=" tick "symbol=" symbol
+ 12. ASSIGN count + count 1
+ 13. IF > tick limit pastlimit
+ 14.     ASSIGN result * symbol tick
+ 15.     PRINT result
+ 16.     ASSIGN tick + tick 1
+ 17.     GOTO afterIf
+ 18. pastlimit: PRINT "***tick...reached...limit:" tick
+ 19. afterIf: PRINT "Bot:...count=" count "tick=" tick "symbol=" symbol
+ 20. PRINT "EndPgm"
+Variables:
+    Variable     Type     Value   
+    COUNT        INT      0        
+    GREETING     STRING   hello..there 
+    ITER         INT      4        
+    LIMIT        INT      10       
+    RESULT       STRING            
+    SYMBOL       STRING   ho       
+    TICK         INT      3        
+Labels:
+    Label        Statement
+    AFTERIF      19      
+    PASTLIMIT    18      
+execution begins ...
+executing line 1: # p6InputA.txt
+executing line 2: # © 2018 Larry W. Clark, this document may not be copied to any other website.
+executing line 3: VAR int count 0
+executing line 4: VAR string result
+executing line 5: VAR string symbol "ho"
+executing line 6: VAR int tick 3
+executing line 7: VAR int limit 10
+executing line 8: VAR string greeting "hello..there"
+executing line 9: VAR int iter 4
+executing line 10: PRINT "begins..."
+begins...  
+executing line 11: PRINT "Top:...count=" count "tick=" tick "symbol=" symbol
+Top:...count= 0 tick= 3 symbol= ho  
+executing line 12: ASSIGN count + count 1
+executing line 13: IF > tick limit pastlimit
+executing line 14:     ASSIGN result * symbol tick
+executing line 15:     PRINT result
+hohoho  
+executing line 16:     ASSIGN tick + tick 1
+executing line 17:     GOTO afterIf
+executing line 19: afterIf: PRINT "Bot:...count=" count "tick=" tick "symbol=" symbol
+Bot:...count= 1 tick= 4 symbol= ho  
+executing line 20: PRINT "EndPgm"
+EndPgm  
+execution ends, 19 lines executed

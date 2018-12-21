@@ -1,0 +1,4 @@
+My name is Long Trac
+I am  running  this  script  from /home/let020/courses/cs3423/assignments
+My  username  is let020
+I am  logged  in to gnu011

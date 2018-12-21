@@ -1,0 +1,101 @@
+;;; removeNILTop
+;;;    Parameters:
+;;;       L - a list of items that can contains embeded list
+;;;    Purpose:
+;;;       Returns a list that is completely free of NIL 
+;;;		  on the top level only - if the list has embeded list,
+;;;		  everthing else stays the same
+
+(defun removeNILTop (L)
+	( COND 	( (NULL L) NIL )
+			( (NULL (CAR L)) (removeNILTop(CDR L)) )
+			( T (CONS (CAR L) (removeNILTop(CDR L))) )	
+	)
+)
+
+
+;;; removeNILMost
+;;;    Parameters:
+;;;       L - a list of items that can contain embeded list
+;;;    Purpose:
+;;;       Returns a list that has NIL at any level removed
+;;;	   Note:  
+;;;		  If the result of removing NIL gives a NIL,
+;;;       it is unnecessary to remove that resulting NIL.  
+
+(defun removeNILMost (L)
+	( COND	( (NULL  L)	NIL )
+			( (NULL (CAR L)) (removeNILMost (CDR L)) )
+			( (ATOM (CAR L)) (CONS (CAR L) (removeNILMost (CDR L))) )
+			( T  (CONS (removeNILMost (CAR L)) (removeNILMost (CDR L))) )	
+	)
+)
+
+
+;;; reverseTop
+;;;    Parameters:
+;;;       L - a list of items that can contain embeded list
+;;;    Purpose:
+;;;       Returns a list that has the top level elements reversed   
+
+(defun  reverseTop (L)
+	( COND 	( (NULL L) NIL )
+			( T (APPEND (reverseTop (CDR L)) (LIST (CAR L)) ) ) 
+	)
+)
+
+
+;;; reverseAll
+;;;    Parameters:
+;;;       L - a list of items that can contain embeded list
+;;;    Purpose:
+;;;       Returns a list that is reversed at all levels
+;;;	   Note:  
+;;;		  This function will reverse embeded lists first before 
+;;;       reverse the outer levels
+
+(defun reverseAll (L)
+	( COND 	( (NULL L) NIL )
+			( (ATOM (CAR L)) (APPEND (reverseAll(CDR L))(LIST (CAR L))) )
+			( T (APPEND (reverseAll(CDR L))(LIST(reverseAll(CAR L)))) )
+	)
+
+)
+
+
+;;; palindrome
+;;;    Parameters:
+;;;       L - a list of items that may or maynot have embeded lists
+;;;    Purpose:
+;;;       Returns T if the list is actually a palindrome
+;;;       Returns NIL otherwise.
+;;;    Note:
+;;;		  Only need to work with the top level list
+
+(defun palindrome (L)
+	( COND 	( (EQUAL L (reverseTop L )) T ) 
+			( T NIL )
+	)
+)
+
+
+;;; removeNILAll
+;;;    Parameters:
+;;;       L - a list of items that can contain embeded list
+;;;    Purpose:
+;;;       Returns a list that has NIL at any level removed
+;;;	   Note:  
+;;;		  Unlike removeNilMost, This one actually remove all the NIL 
+;;;       including the result of removing NIL gives a NIL.
+
+(defun removeNILAll (L)
+	( COND	( (NULL  L ) NIL )
+			( (NULL (CAR L)) (removeNILAll (CDR L)) )
+			( (ATOM (CAR L)) (CONS (CAR L) (removeNILAll (CDR L))) )
+			( (NULL (CDR L)) (removeNILAll (CAR L)) )
+			( (AND (NULL (CAAR L)) (NULL (CADR L))) (removeNILAll (CDR l)) )
+			( (OR (NULL (CAAR L)) (NULL (CADR L))) (removeNILAll (CDR l)) )
+			( (NULL (CDAR L)) (APPEND (removeNILAll (CAR L))(removeNILAll (CDR L))) )
+			( T  (CONS (removeNILAll (CAR L)) (removeNILAll (CDR L))) )	
+	)
+)
